@@ -33,7 +33,7 @@ const MailBox = () =>{
           .join("");
         try {
           const response = await fetch(
-            `https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/${dummyEmail}/sentMails.json`,
+            `https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/sent/${dummyEmail}/sentMails.json`,
             {
               method: "POST",
               body: JSON.stringify(details),
@@ -67,7 +67,7 @@ const MailBox = () =>{
           .join("");
         try {
           const response = await fetch(
-            `https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/${dummyEmail}/Inbox.json`,
+            `https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/recieved/${dummyEmail}/Inbox.json`,
             {
               method: "POST",
               body: JSON.stringify(details),

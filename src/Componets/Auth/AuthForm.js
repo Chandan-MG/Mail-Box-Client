@@ -70,7 +70,7 @@ const AuthForm =()=>{
         // authCtx.login(data.idToken);
         // console.log(data.email);
         dispatch(authActions.login({ token: data.email }));
-        history.replace('/mailbox');
+        history.replace('/inbox');
       }).catch(err=>{
         alert(err.message);
       })

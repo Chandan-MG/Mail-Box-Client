@@ -1,0 +1,26 @@
+.email {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.email-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.email-header .email-from {
+    width: 30%; /* Set width to 30% */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.email-header .email-subject {
+    width: 70%; /* Set width to 70% */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

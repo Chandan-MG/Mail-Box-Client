@@ -3,6 +3,7 @@ import './App.css';
 import {Switch, Route} from 'react-router-dom/cjs/react-router-dom'
 import AuthForm from './Componets/Auth/AuthForm';
 import MailBox from './Componets/Sceens/MailBox';
+import InBox from './Componets/Sceens/InBox';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         </Route>
         <Route path='/mailbox'>
           <MailBox />
+        </Route>
+        <Route path='/inbox'>
+          <InBox />
         </Route>
       </Switch>
     </>
