@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import './InBox.css';
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+// import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import SideNav from "../NavBar/SideNav";
 
 const InBox = () => {
     const email = useSelector((store) => store.auth.token);
-    const history = useHistory();
+    // const history = useHistory();
     const [inboxItems, setInboxItems] = useState([]);
     useEffect(() => {
         const fetchInboxItems = async () => {
@@ -44,36 +45,40 @@ const InBox = () => {
     }, [email]); // dependency array should contain only 'email'
     
 
-    const composeHandler =()=>{
-        history.replace('/mailbox');
-    }
+    
     return (
-        <div className="inbox-container">
-            <button onClick={composeHandler}>Compose</button>
-            <h2>Email Inbox</h2>
-            <div className="inbox">
-                {inboxItems.map(item => (
-                    <div className="email" key={item.id}>
-                        <div className="email-header">
-                            <div className="email-from">{item.from}</div>
-                            <div className="email-subject">{item.subject}</div>
+        <>
+            <header></header>
+            <div className="inbox-container">
+                {/* <h2>Email Inbox</h2> */}
+                <div className="sideNav">
+                    <SideNav  />
+                </div>
+                
+                <div className="inbox">
+                    {inboxItems.map(item => (
+                        <div className="email" key={item.id}>
+                            <div className="email-header">
+                                <div className="email-from">{item.from}</div>
+                                <div className="email-subject">{item.subject}</div>
+                            </div>
+                            {/* <div className="email-body">
+                                {item.content && (
+                                    <div>
+                                        {item.content
+                                            .filter(contentItem => contentItem.text) // Filter out content items without text
+                                            .map((contentItem, index) => (
+                                                <span key={index}>{contentItem.text}</span> // Render text in a span element
+                                            ))}
+                                    </div>
+                                )}
+                            </div> */}
                         </div>
-                        {/* <div className="email-body">
-                            {item.content && (
-                                <div>
-                                    {item.content
-                                        .filter(contentItem => contentItem.text) // Filter out content items without text
-                                        .map((contentItem, index) => (
-                                            <span key={index}>{contentItem.text}</span> // Render text in a span element
-                                        ))}
-                                </div>
-                            )}
-                        </div> */}
-                    </div>
-                ))}
+                    ))}
 
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

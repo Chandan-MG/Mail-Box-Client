@@ -24,3 +24,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.inbox-container{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+
+.inbox{
+    width: 100%;
+}
+
+header{
+    background-color: rgb(144, 134, 209);
+    height: 8vh;
+}

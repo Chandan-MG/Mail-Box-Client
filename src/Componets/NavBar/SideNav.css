@@ -1,0 +1,25 @@
+.side-nav {
+    height: 92vh; /* Set the height to 100% of the viewport height */
+  }
+  
+  .nav-item {
+    width: 15vw; /* Each item takes up 100% width of its container */
+    text-align: left; /* Align text to the left */
+    padding: 0.5rem; /* Add padding for better spacing */
+    transition: background-color 0.3s; /* Add transition effect for smoother hover */
+  }
+  
+  .nav-item:hover {
+    background-color: #c1edec; /* Change background color on hover */
+  }
+
+  .nav{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    /* justify-content: flex-start; */
+    height: 92vh; /* Set the height to 100% of the viewport height */
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Items will be stacked vertically */
+    justify-content: flex-start;
+  }
+  
