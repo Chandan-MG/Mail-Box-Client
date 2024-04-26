@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom/cjs/react-router-dom'
 import AuthForm from './Componets/Auth/AuthForm';
 import MailBox from './Componets/Sceens/MailBox';
 import InBox from './Componets/Sceens/InBox';
+import InBoxItem from './Componets/Sceens/InBoxItem';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path='/inbox'>
           <InBox />
+        </Route>
+        <Route path='/inboxitem'>
+          <InBoxItem />
         </Route>
       </Switch>
     </>

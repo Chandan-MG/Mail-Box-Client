@@ -4,9 +4,10 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {Button} from 'react-bootstrap';
 import './MailBox.css';
 import {useSelector} from 'react-redux';
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const MailBox = () =>{
-    
+    const history = useHistory();
     const [editorState, setEditorState] = useState("");
     const [to, setTo] = useState("");
     const [subject, setSubject] = useState("");
@@ -87,8 +88,15 @@ const MailBox = () =>{
         }
       };
 
+    const closeHandle =()=>{
+      history.replace('/inbox');
+    }
+
     return(
         <div className="main">
+            <div>
+              <Button variant="secondary" onClick={closeHandle}>close</Button>
+            </div>
             <div className="row">
                 <input
                     id="to"

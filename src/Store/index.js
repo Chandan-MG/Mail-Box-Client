@@ -27,14 +27,35 @@ const authSlice = createSlice({
     }
 });
 
+const initialInBoxState = {
+    inboxCount: null,
+    selectedItem: null
+}
+
+const inboxSlice = createSlice({
+    name: 'inbox',
+    initialState: initialInBoxState,
+    reducers: {
+        inBoxCount(state, action){
+            state.inboxCount = action.payload;
+        },
+        InBoxItem(state, action) {
+            state.selectedItem= action.payload;
+            // console.log(action.payload);
+        }
+    }
+});
+
 
 
 const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
+        inbox: inboxSlice.reducer
     }
 })
 
 export const authActions = authSlice.actions;
+export const inboxActions = inboxSlice.actions;
 
 export default store;

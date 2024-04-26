@@ -23,3 +23,9 @@
     justify-content: flex-start;
   }
   
+
+  .inbox-count {
+    color: blue;
+    float: right;
+    font-weight: bold;
+  }
