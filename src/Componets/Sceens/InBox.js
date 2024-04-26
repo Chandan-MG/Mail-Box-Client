@@ -107,7 +107,7 @@ const InBox = () => {
             <header></header>
             <div className="inbox-container">
                 {/* <h2>Email Inbox</h2> */}
-                <div className="sideNav">
+                <div className="sideNav" data-testid='sidenavtest'>
                     <SideNav  />
                 </div>
                 
@@ -115,8 +115,8 @@ const InBox = () => {
                     {inboxItems.map(item => (
                         <div className="email" key={item.id} onClick={() => handleItemClick(item)}>
                             <div className="email-header">
-                                { !item.isRead && (<div className="email-dot" > 
-                                    <div className='blue-dot'></div>
+                                { !item.isRead && (<div className="email-dot"> 
+                                    <div className='blue-dot' data-testid='blueDot'></div>
                                 </div>)}
                                 <div className="email-from">{item.from}</div>
                                 <div className="email-subject">{item.subject}</div>
