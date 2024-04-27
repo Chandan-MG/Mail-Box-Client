@@ -14,6 +14,7 @@ const InBox = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [inboxItems, setInboxItems] = useState([]);
+    
     useEffect(() => {
         const fetchInboxItems = async () => {
             const dummyEmail = email
