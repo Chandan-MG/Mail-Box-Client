@@ -1,6 +1,8 @@
 .email {
-    margin-bottom: 10px;
-    padding: 10px;
+    /* margin-bottom: 10px; */
+    padding: 5px;
+    width: 90%;
+    /* background-color: antiquewhite; */
 }
 
 .email-header {
@@ -9,6 +11,14 @@
     margin-bottom: 5px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
+}
+
+.email-header-second {
+    display: flex;
+    justify-content: space-between;
+    /* margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px; */
 }
 
 .email-header .email-dot {
@@ -26,7 +36,7 @@
 }
 
 .email-header .email-subject {
-    width: 70%; /* Set width to 70% */
+    width: 68%; /* Set width to 70% */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -57,3 +67,10 @@ header{
     position: absolute;
     transform: translateY(-50%); /* Adjust position */
   }
+
+.email-delete{
+    width: 2%; /* Set width to 70% */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

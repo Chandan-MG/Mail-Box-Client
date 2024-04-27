@@ -4,6 +4,10 @@ import './InBox.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import SideNav from "../NavBar/SideNav";
 import { inboxActions } from "../../Store";
+import { BsFillTrashFill } from "react-icons/bs";
+
+//https://react-icons.github.io/react-icons/icons/bs/   => link for icons
+
 
 const InBox = () => {
     const email = useSelector((store) => store.auth.token);
@@ -101,6 +105,28 @@ const InBox = () => {
             console.error('Error updating item:', error);
         }
     }
+
+    const deleteEmail = async(id)=>{
+        // console.log(id);
+        const dummyEmail = email
+                .toLowerCase()
+                .split("")
+                .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+                .join("");
+        try {
+            const response = await fetch(`https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/recieved/${dummyEmail}/Inbox/${id}.json`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                alert("Expense successfully deleted");
+                console.log("Expense successfully deleted");
+            } else {
+                alert('Failed to delete expense:', response.statusText);
+            }
+        } catch (error) {
+            alert('Error deleting expense:', error);
+        }
+    }
     
     return (
         <>
@@ -113,13 +139,18 @@ const InBox = () => {
                 
                 <div className="inbox">
                     {inboxItems.map(item => (
-                        <div className="email" key={item.id} onClick={() => handleItemClick(item)}>
-                            <div className="email-header">
-                                { !item.isRead && (<div className="email-dot"> 
-                                    <div className='blue-dot' data-testid='blueDot'></div>
-                                </div>)}
-                                <div className="email-from">{item.from}</div>
-                                <div className="email-subject">{item.subject}</div>
+                        <div className="email-header" key={item.id}>
+                            <div className="email" onClick={() => handleItemClick(item)}>
+                                <div className="email-header-second">
+                                    { !item.isRead && (<div className="email-dot"> 
+                                        <div className='blue-dot' data-testid='blueDot'></div>
+                                    </div>)}
+                                    <div className="email-from">{item.from}</div>
+                                    <div className="email-subject">{item.subject}</div>
+                                </div>
+                            </div>
+                            <div className="email-delete">
+                                        <BsFillTrashFill color="red" onClick={() => deleteEmail(item.id)} />
                             </div>
                         </div>
                     ))}
