@@ -21,7 +21,7 @@ const SideNav = () => {
         <Nav className="flex-column nav">
           <Button onClick={composeHandler} className="nav-item">Compose</Button>
           <Nav.Link href="inbox" className="nav-item">Inbox <span className="inbox-count">{inboxCount}</span></Nav.Link>
-          <Nav.Link href="sent" className="nav-item">Sent</Nav.Link>
+          <Nav.Link href="sentbox" className="nav-item">Sent</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

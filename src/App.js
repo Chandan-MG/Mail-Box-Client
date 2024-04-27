@@ -5,6 +5,8 @@ import AuthForm from './Componets/Auth/AuthForm';
 import MailBox from './Componets/Sceens/MailBox';
 import InBox from './Componets/Sceens/InBox';
 import InBoxItem from './Componets/Sceens/InBoxItem';
+import SentBox from './Componets/Sceens/sentBox';
+import SentBoxItem from './Componets/Sceens/sentBoxItem.js';
 
 function App() {
   return (
@@ -21,6 +23,12 @@ function App() {
         </Route>
         <Route path='/inboxitem'>
           <InBoxItem />
+        </Route>
+        <Route path='/sentbox'>
+          <SentBox />
+        </Route>
+        <Route path='/sentboxitem'>
+          <SentBoxItem />
         </Route>
       </Switch>
     </>

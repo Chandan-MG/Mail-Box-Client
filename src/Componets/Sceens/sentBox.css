@@ -28,7 +28,7 @@
     text-overflow: ellipsis;
 }
 
-.email-header .email-from {
+.email-header .email-to {
     width: 28%; /* Set width to 30% */
     white-space: nowrap;
     overflow: hidden;
@@ -42,13 +42,13 @@
     text-overflow: ellipsis;
 }
 
-.inbox-container{
+.sentbox-container{
     display: flex;
     /* justify-content: space-between; */
 }
 
 
-.inbox{
+.sentbox{
     width: 100%;
 }
 

@@ -46,16 +46,33 @@ const inboxSlice = createSlice({
     }
 });
 
+const initialSentBoxState = {
+    selectedItem: null
+}
+
+const sentboxSlice = createSlice({
+    name: 'sentbox',
+    initialState: initialSentBoxState,
+    reducers: {
+        SentBoxItem(state, action) {
+            state.selectedItem= action.payload;
+            // console.log(action.payload);
+        }
+    }
+});
+
 
 
 const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
-        inbox: inboxSlice.reducer
+        inbox: inboxSlice.reducer,
+        sentbox: sentboxSlice.reducer
     }
 })
 
 export const authActions = authSlice.actions;
 export const inboxActions = inboxSlice.actions;
+export const  sentboxActions = sentboxSlice.actions;
 
 export default store;
