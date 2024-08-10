@@ -121,14 +121,6 @@ const MailBox = () =>{
                 <Editor
                     initialContentState={editorState}
                     onContentStateChange={setEditorState}
-                    // toolbarClassName="flex justify-between items-center cursor-pointer"
-                    // toolbar={{
-                    //     inline: { isDropdown: true },
-                    //     list: { isDropdown: true },
-                    //     textAlign: { isDropdown: true },
-                    //     link: { isDropdown: true },
-                    //     history: { isDropdown: true },
-                    // }}
                 />
             </div>
             <div className="mt-auto">
