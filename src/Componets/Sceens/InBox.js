@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import './InBox.css';
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import SideNav from "../NavBar/SideNav";
 import { inboxActions } from "../../Store";
 import { BsFillTrashFill } from "react-icons/bs";
+import useFetchInboxItems from "../CustomHook/InboxCustom";
 
 //https://react-icons.github.io/react-icons/icons/bs/   => link for icons
 
@@ -13,49 +14,9 @@ const InBox = () => {
     const email = useSelector((store) => store.auth.token);
     const dispatch = useDispatch();
     const history = useHistory();
-    const [inboxItems, setInboxItems] = useState([]);
     
-    useEffect(() => {
-        const fetchInboxItems = async () => {
-            const dummyEmail = email
-                .toLowerCase()
-                .split("")
-                .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
-                .join("");
-            // console.log(dummyEmail);
-            try {
-                const response = await fetch(`https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/recieved/${dummyEmail}/Inbox.json`);
-                if (response.ok) {
-                    const inboxItemsObject = await response.json();
-                    if (inboxItemsObject) {
-                        const inboxItemsArray = Object.keys(inboxItemsObject).map(key => ({
-                            id: key,
-                            ...inboxItemsObject[key]
-                        }));
-                        setInboxItems(inboxItemsArray);
-                        const totalUnreadMessages = inboxItems.filter(item => !item.isRead).length;
-                        dispatch(inboxActions.inBoxCount(totalUnreadMessages));
-
-                    } else {
-                        console.log('No inbox items found.');
-                        setInboxItems([]);
-                    }
-                } else {
-                    console.error('Error fetching inbox items:', response.status, response.statusText);
-                    setInboxItems([]); // Clear the inbox items in case of an error
-                }
-                
-            } catch (error) {
-                console.error('Error fetching:', error);
-                setInboxItems([]); // Clear the inbox items in case of an error
-            }
-        };
-    
-        fetchInboxItems();
-    }, [email, dispatch, inboxItems]); // dependency array should contain only 'email'
-
-    // const totalUnreadMessages = inboxItems.filter(item => !item.read).length;
-    // dispatch(inboxActions.inBoxCount(totalUnreadMessages));
+    //calling custom hook
+    const { inboxItems } = useFetchInboxItems(email, dispatch);
 
     const handleItemClick =(item)=>{
         // console.log(item);

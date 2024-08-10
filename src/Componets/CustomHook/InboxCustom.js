@@ -1,36 +1,47 @@
+// useFetchInboxItems.js
 import { useEffect, useState } from "react";
-import { inboxActions } from "../../Store";
 
-const useFetchInputData = (url, email, dispatch) => {
-    const [data, setData] = useState([]);
+const useFetchInboxItems = (email, dispatch) => {
+    const [inboxItems, setInboxItems] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchInboxItems = async () => {
+            const dummyEmail = email
+                .toLowerCase()
+                .split("")
+                .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+                .join("");
             try {
-                const dummyEmail = email
-                    .toLowerCase()
-                    .split("")
-                    .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
-                    .join("");
-                const response = await fetch(url.replace('{dummyEmail}', dummyEmail));
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
+                const response = await fetch(`https://expense-tracker-dfeec-default-rtdb.firebaseio.com/mailbox/recieved/${dummyEmail}/Inbox.json`);
+                if (response.ok) {
+                    const inboxItemsObject = await response.json();
+                    if (inboxItemsObject) {
+                        const inboxItemsArray = Object.keys(inboxItemsObject).map(key => ({
+                            id: key,
+                            ...inboxItemsObject[key]
+                        }));
+                        setInboxItems(inboxItemsArray);
+                        const totalUnreadMessages = inboxItemsArray.filter(item => !item.isRead).length;
+                        dispatch(inboxActions.inBoxCount(totalUnreadMessages));
+                    } else {
+                        console.log('No inbox items found.');
+                        setInboxItems([]);
+                    }
+                } else {
+                    console.error('Error fetching inbox items:', response.status, response.statusText);
+                    setError('Failed to fetch inbox items');
                 }
-                const responseData = await response.json();
-                setData(responseData);
-                const totalUnreadMessages = responseData.filter(item => !item.isRead).length;
-                dispatch(inboxActions.inBoxCount(totalUnreadMessages));
             } catch (error) {
-                console.error('Error fetching data:', error);
-                setError(error);
+                console.error('Error fetching:', error);
+                setError('Failed to fetch inbox items');
             }
         };
 
-        fetchData();
-    }, [url, email, dispatch]);
+        fetchInboxItems();
+    }, [email, dispatch]);
 
-    return { data, error };
+    return { inboxItems, error };
 };
 
-export default useFetchInputData;
+export default useFetchInboxItems;
