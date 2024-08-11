@@ -11,7 +11,6 @@ const SentBoxItem = () => {
     const { to, text } = item;
 
     const history = useHistory();
-    // console.log(item);
 
     const backHandle = () =>{
        history.replace('/sentbox');

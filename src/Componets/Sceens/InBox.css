@@ -65,7 +65,7 @@ header{
     background-color: blue;
     border-radius: 50%;
     position: absolute;
-    transform: translateY(-50%); /* Adjust position */
+    transform: translateY(-50%); 
   }
 
 .email-delete{
