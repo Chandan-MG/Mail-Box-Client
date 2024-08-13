@@ -56,7 +56,6 @@ const sentboxSlice = createSlice({
     reducers: {
         SentBoxItem(state, action) {
             state.selectedItem= action.payload;
-            // console.log(action.payload);
         }
     }
 });
