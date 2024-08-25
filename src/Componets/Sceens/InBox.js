@@ -94,30 +94,7 @@ const InBox = () => {
         <>
             <header></header>
             <div className="inbox-container">
-                {/* <h2>Email Inbox</h2> */}
-                <div className="sideNav" data-testid='sidenavtest'>
-                    <SideNav  />
-                </div>
                 
-                <div className="inbox">
-                    {inboxItems.map(item => (
-                        <div className="email-header" key={item.id}>
-                            <div className="email" onClick={() => handleItemClick(item)}>
-                                <div className="email-header-second">
-                                    { !item.isRead && (<div className="email-dot"> 
-                                        <div className='blue-dot' data-testid='blueDot'></div>
-                                    </div>)}
-                                    <div className="email-from">{item.from}</div>
-                                    <div className="email-subject">{item.subject}</div>
-                                </div>
-                            </div>
-                            <div className="email-delete">
-                                        <BsFillTrashFill color="red" onClick={() => deleteEmail(item.id)} />
-                            </div>
-                        </div>
-                    ))}
-
-                </div>
             </div>
         </>
     );
