@@ -12,9 +12,6 @@ describe('InBox component', () => {
             </Provider>
         );
 
-        // Act - No specific action needed for this test
-
-        // Assert
         const headerElement = screen.getByRole('banner'); // Find the header element by its role
         expect(headerElement).toBeInTheDocument();
     });
